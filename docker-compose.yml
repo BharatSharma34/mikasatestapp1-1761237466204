@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "${BACKEND_PORT}:8000"
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_BASE_PATH: /apps/mikasatestapp1-1761237466204
+    container_name: frontend
+    ports:
+      - "${FRONTEND_PORT}:3000"
+    environment:
+      - NEXT_PUBLIC_BASE_PATH=/apps/mikasatestapp1-1761237466204
+    depends_on:
+      - backend
